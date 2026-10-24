@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" href="logo-mdl.png">
 <link rel="apple-touch-icon" href="logo-mdl.png">
 <link rel="preload" href="fonts/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "La Maison des Livreurs – Strasbourg", "url": "https://maisondeslivreurs-strasbourg.github.io/", "logo": "https://maisondeslivreurs-strasbourg.github.io/logo-mdl.png", "email": "lamaisondeslivreurs.strasbourg@gmail.com", "telephone": "+33601151469", "address": {"@type": "PostalAddress", "streetAddress": "32 route des Romains", "postalCode": "67200", "addressLocality": "Strasbourg", "addressCountry": "FR"}, "sameAs": ["https://www.instagram.com/lamaisondeslivreurs.strasbourg/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "NGO", "name": "La Maison des Livreurs – Strasbourg", "url": "https://maisondeslivreurs-strasbourg.github.io/", "logo": "https://maisondeslivreurs-strasbourg.github.io/logo-mdl.png", "email": "lamaisondeslivreurs.strasbourg@gmail.com", "address": {"@type": "PostalAddress", "streetAddress": "32 route des Romains", "postalCode": "67200", "addressLocality": "Strasbourg", "addressCountry": "FR"}, "sameAs": ["https://www.instagram.com/lamaisondeslivreurs.strasbourg/"]}</script>
 <style>
 @font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(fonts/atkinson-hyperlegible-400.woff2) format('woff2')}
 @font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;font-display:swap;src:url(fonts/atkinson-hyperlegible-700.woff2) format('woff2')}
@@ -185,7 +185,7 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
 
 @supports (animation-timeline: view()){
   .mdl-reveal{animation:mdl-rise linear both;animation-timeline:view();animation-range:entry 0% cover 24%}
-  .mdl-cnt{animation:mdl-count linear both;animation-timeline:view();animation-range:entry 15% cover 45%}
+  .mdl-cnt{animation:mdl-count linear both;animation-timeline:view();animation-range:entry 0% entry 100%}
   .mdl-fill{color:transparent;background:linear-gradient(90deg,#14142B 0 50%,#D5D6E2 50% 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;animation:mdl-fill linear both;animation-timeline:view();animation-range:entry 25% cover 60%}
   .mdl-progress{animation:mdl-progress linear both;animation-timeline:scroll(root block)}
   [dir="rtl"] .mdl-fill{background-image:linear-gradient(90deg,#D5D6E2 0 50%,#14142B 50% 100%);animation-name:mdl-fill-rtl}
@@ -264,6 +264,30 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
 [dir="rtl"] .mdl-progress{transform-origin:100% 50%}
 @media (max-width: 1024px){[dir="rtl"] .stat:nth-child(3){padding-right:0;border-right:0}}
 @media (max-width: 640px){[dir="rtl"] .stat,[dir="rtl"] .stat + .stat{padding:0 0 0 12px;border-right:0}}
+/* v6 : pages, en-têtes de page, QR code */
+.sec-blue{background:#F5F6FC;border-top:1px solid #E4E6F5}
+.sec-green{background:#EDF7F2;border-top:1px solid #CFE8DC}
+.page-hero{position:relative;padding:96px 24px 88px;border-bottom:1px solid #E4E6F5;overflow:hidden}
+.bg-blue{background:#F5F6FC}
+.bg-green{background:#EDF7F2;border-bottom-color:#CFE8DC}
+.page-house{position:absolute;right:0;top:-8px;width:250px;height:200px}
+.p1{animation-delay:.1s}.p2{animation-delay:.25s}.p3{animation-delay:.4s}.p4{animation-delay:.55s}
+.mdl-navlink.is-current{color:#1211CA}
+.mdl-navlink.is-current::after{transform:scaleX(1)}
+.rdv{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center}
+.qr-card{padding:28px;border-radius:22px;border:1px solid #E2E4F2;background:#FFFFFF;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.qr-box{width:200px;height:200px}
+.teaser{padding:34px;border-radius:22px;color:#14142B;text-decoration:none;display:flex;flex-direction:column;gap:12px}
+@media (max-width: 1024px){
+  .page-house{display:none}
+  .rdv{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 640px){
+  .page-hero{padding:56px 20px 56px}
+  .qr-box{width:170px;height:170px}
+  .teaser{padding:26px}
+}
+[dir="rtl"] .page-house{right:auto;left:0}
 
 [hidden]{display:none !important}
 .tab{min-height:46px;padding:0 22px;border:0;border-radius:999px;background:transparent;color:#4A4A5E;font:inherit;font-weight:700;cursor:pointer}
@@ -297,37 +321,38 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
       </a>
       <div class="navlinks" style="align-items: center; gap: 22px; font-size: 16px; font-weight: 700">
         <div class="dd">
-          <a href="#projet" data-spy="projet" class="mdl-navlink"><span>Le projet</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
+          <a href="#top" class="mdl-navlink is-current" aria-current="page"><span>Accueil</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
           <div class="dd-menu">
-            <a href="#pourquoi" data-sub="pourquoi">Pourquoi une maison</a>
             <a href="#services" data-sub="services">Nos services</a>
-            <a href="#etapes" data-sub="etapes">Où en est-on</a>
-          </div>
-        </div>
-        <div class="dd">
-          <a href="#engagement" data-spy="engagement" class="mdl-navlink"><span>Engagement</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
-          <div class="dd-menu">
             <a href="#promesses" data-sub="promesses">Nos engagements</a>
-            <a href="#chartes" data-sub="chartes">Les chartes</a>
-            <a href="#agir" data-sub="agir">Agir avec nous</a>
+            <a href="#rencontrer" data-sub="rencontrer">Nous rencontrer</a>
+            <a href="#faq" data-sub="faq">Questions</a>
           </div>
         </div>
         <div class="dd">
-          <a href="#reseau" data-spy="reseau" class="mdl-navlink"><span>Réseau</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
+          <a href="le-projet.html" class="mdl-navlink"><span>Le projet</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
           <div class="dd-menu">
-            <a href="#maisons" data-sub="maisons">Les Maisons en France</a>
-            <a href="#presse" data-sub="presse">Dans la presse</a>
+            <a href="le-projet.html#pourquoi">Pourquoi une maison</a>
+            <a href="le-projet.html#etapes">Où en est-on</a>
+            <a href="le-projet.html#maisons">Les Maisons en France</a>
+            <a href="le-projet.html#presse">Dans la presse</a>
           </div>
         </div>
-        <a href="#faq" data-spy="faq" class="mdl-navlink">Questions</a>
-        <a href="#contact" data-spy="contact" class="mdl-navlink">Contact</a>
+        <div class="dd">
+          <a href="s-engager.html" class="mdl-navlink"><span>S'engager</span><svg aria-hidden="true" class="dd-ico" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 4.5 6 8l3.5-3.5"></path></svg></a>
+          <div class="dd-menu">
+            <a href="s-engager.html#agir">Agir avec nous</a>
+            <a href="s-engager.html#chartes">Les chartes</a>
+          </div>
+        </div>
+        <a href="#contact" class="mdl-navlink">Contact</a>
       </div>
       <div style="display: flex; align-items: center; gap: 8px">
         <details class="lang"><summary aria-label="Choisir la langue"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"></path></svg><span>FR</span></summary><div class="lang-menu"><a href="index.html" lang="fr" hreflang="fr" aria-current="page">Français <span aria-hidden="true">FR</span></a><a href="en/index.html" lang="en" hreflang="en">English <span aria-hidden="true">EN</span></a><a href="ar/index.html" lang="ar" hreflang="ar" dir="rtl">العربية <span aria-hidden="true">AR</span></a><a href="ps/index.html" lang="ps" hreflang="ps" dir="rtl">پښتو <span aria-hidden="true">PS</span></a></div></details>
         <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" aria-label="Instagram de la Maison des Livreurs" class="mdl-hide-sm" style="width: 44px; height: 44px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: #14142B; border: 1px solid #E6E6EE">
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"></circle></svg>
         </a>
-        <a href="#agir" class="mdl-btn mdl-hide-sm" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Nous rejoindre</a>
+        <a href="s-engager.html#agir" class="mdl-btn mdl-hide-sm" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; font-size: 16px; text-decoration: none">Nous rejoindre</a>
         <button type="button" class="navburger" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid #E6E6EE; background: #FFFFFF; color: #14142B; align-items: center; justify-content: center; cursor: pointer">
           <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
         </button>
@@ -335,32 +360,32 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
     </nav>
     <div class="subnav is-hidden" id="subnav">
       <nav aria-label="Sections de la page" class="subnav-track" id="subnav-track">
-        <a href="#projet" data-spy="projet" class="chip">Le projet</a>
-        <a href="#engagement" data-spy="engagement" class="chip">Engagement</a>
-        <a href="#reseau" data-spy="reseau" class="chip">Réseau</a>
+        <a href="#services" data-spy="services" class="chip">Nos services</a>
+        <a href="#promesses" data-spy="promesses" class="chip">Nos engagements</a>
+        <a href="#rencontrer" data-spy="rencontrer" class="chip">Nous rencontrer</a>
         <a href="#faq" data-spy="faq" class="chip">Questions</a>
-        <a href="#contact" data-spy="contact" class="chip">Contact</a>
       </nav>
     </div>
     
     <div id="menu" hidden>
       <div class="mm">
         <div style="display: flex; flex-direction: column">
-          <a href="#projet" class="mm-title">Le projet</a>
-          <a href="#pourquoi" class="mm-sub">Pourquoi une maison</a>
+          <a href="#top" class="mm-title">Accueil</a>
           <a href="#services" class="mm-sub">Nos services</a>
-          <a href="#etapes" class="mm-sub">Où en est-on</a>
-          <a href="#engagement" class="mm-title">Engagement</a>
           <a href="#promesses" class="mm-sub">Nos engagements</a>
-          <a href="#chartes" class="mm-sub">Les chartes</a>
-          <a href="#agir" class="mm-sub">Agir avec nous</a>
-          <a href="#reseau" class="mm-title">Réseau</a>
-          <a href="#maisons" class="mm-sub">Les Maisons en France</a>
-          <a href="#presse" class="mm-sub">Dans la presse</a>
-          <a href="#faq" class="mm-title">Questions</a>
+          <a href="#rencontrer" class="mm-sub">Nous rencontrer</a>
+          <a href="#faq" class="mm-sub">Questions</a>
+          <a href="le-projet.html" class="mm-title">Le projet</a>
+          <a href="le-projet.html#pourquoi" class="mm-sub">Pourquoi une maison</a>
+          <a href="le-projet.html#etapes" class="mm-sub">Où en est-on</a>
+          <a href="le-projet.html#maisons" class="mm-sub">Les Maisons en France</a>
+          <a href="le-projet.html#presse" class="mm-sub">Dans la presse</a>
+          <a href="s-engager.html" class="mm-title">S'engager</a>
+          <a href="s-engager.html#agir" class="mm-sub">Agir avec nous</a>
+          <a href="s-engager.html#chartes" class="mm-sub">Les chartes</a>
           <a href="#contact" class="mm-title">Contact</a>
           <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" class="mm-title">Instagram ↗</a>
-          <a href="#agir" class="mm-cta">Nous rejoindre</a>
+          <a href="s-engager.html#agir" class="mm-cta">Nous rejoindre</a>
         </div>
       </div>
     </div>
@@ -403,8 +428,8 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
         </h1>
         <p class="mdl-in d3 herosub" style="margin: 0; max-width: 600px; font-size: 20px; color: #4A4A5E">La Maison des Livreurs accueille gratuitement les livreur·ses des plateformes de Strasbourg&#160;: un abri pour se poser, et une équipe pour aider sur les papiers, la santé, les droits et la suite.</p>
         <div class="mdl-in d4 ctas">
-          <a href="https://wa.me/33601151469" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">
-            <span>Nous écrire sur WhatsApp</span>
+          <a href="https://chat.whatsapp.com/JG7V2qbo7UQ6ZfQI7i8W1e?mode=gi_t" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">
+            <span>Rejoindre le groupe WhatsApp</span>
             <svg aria-hidden="true" class="flip" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 9h12M10 4l5 5-5 5"></path></svg>
           </a>
           <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 999px; border: 1px solid #D5D6E2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">
@@ -444,43 +469,7 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
     </div>
   </div>
 
-  <!-- ===== 01 LE PROJET : pourquoi · services · étapes ===== -->
-  <div id="projet" class="grp">
-  <div class="grp-head">
-    <div class="wrap grp-head-in mdl-reveal">
-      <p class="grp-title"><span class="eb-num">01</span><span style="font-family: 'Bricolage Grotesque', sans-serif">Le projet</span></p>
-      <div class="grp-links"><a href="#pourquoi">Pourquoi une maison</a><a href="#services">Nos services</a><a href="#etapes">Où en est-on</a></div>
-    </div>
-  </div>
-  <section id="pourquoi" class="sec">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 56px">
-      <p class="eyebrow mdl-reveal"><span>Pourquoi une maison&#160;?</span></p>
-      <p class="mdl-fill" style="margin: 0; max-width: 1040px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(28px, 4vw, 54px); line-height: 1.14; letter-spacing: -.02em">Ils livrent nos repas par tous les temps, sept jours sur sept. Entre deux commandes, ils n'ont nulle part où s'abriter, se poser ou être écoutés. Alors on leur ouvre une maison.</p>
-      <div style="display: flex; flex-direction: column; gap: 28px">
-        <p class="mdl-reveal" style="margin: 0; font-size: 15px; font-weight: 700; color: #5E5E72">Ce que révèle l'étude SANTÉ-COURSE</p>
-        <div class="stats">
-          <div class="stat mdl-reveal">
-            <span class="statnum" style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 1; color: #1211CA" dir="ltr"><span class="mdl-cnt" aria-hidden="true" style="--n: 63"></span><span class="sr">63</span><span>&#160;h</span></span>
-            <span style="display: block; margin-top: 10px; color: #4A4A5E">de travail par semaine, en moyenne</span>
-          </div>
-          <div class="stat mdl-reveal">
-            <span class="statnum" style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 1; color: #1211CA" dir="ltr"><span class="mdl-cnt" aria-hidden="true" style="--n: 58"></span><span class="sr">58</span><span>,7&#160;%</span></span>
-            <span style="display: block; margin-top: 10px; color: #4A4A5E">ont déjà eu un accident du travail</span>
-          </div>
-          <div class="stat mdl-reveal">
-            <span class="statnum" style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 1; color: #1211CA" dir="ltr"><span class="mdl-cnt" aria-hidden="true" style="--n: 32"></span><span class="sr">32</span><span>&#160;%</span></span>
-            <span style="display: block; margin-top: 10px; color: #4A4A5E">n'ont aucune couverture santé</span>
-          </div>
-          <div class="stat mdl-reveal">
-            <span class="statnum" style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; line-height: 1; color: #1211CA" dir="ltr"><span class="mdl-cnt" aria-hidden="true" style="--n: 42"></span><span class="sr">42</span><span>,5&#160;%</span></span>
-            <span style="display: block; margin-top: 10px; color: #4A4A5E">ont passé au moins une journée sans repas dans l'année</span>
-          </div>
-        </div>
-        <p style="margin: 0; font-size: 15px; color: #5E5E72"><span>Source&#160;:</span> <a href="https://www.medecinsdumonde.org/app/uploads/2026/03/Rapport_SANTE-COURSE.pdf" target="_blank" rel="noopener" style="font-weight: 700">rapport SANTÉ-COURSE</a><span>, Médecins du Monde · IRD · INED (2026), enquête auprès de plus de 1&#160;000 livreurs à Paris et Bordeaux.</span></p>
-      </div>
-    </div>
-  </section>
-
+  <!-- ===== CE QU'ON Y TROUVE ===== -->
   <section id="services" class="sec">
     <div class="wrap" style="display: flex; flex-direction: column; gap: 52px">
       <div class="head mdl-reveal">
@@ -525,67 +514,8 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
     </div>
   </section>
 
-  <section id="etapes" class="sec grp-last">
-    <div class="wrap" style="display: flex; flex-wrap: wrap; gap: 56px">
-      <div class="mdl-reveal" style="flex: 1 1 340px; display: flex; flex-direction: column; gap: 18px">
-        <p class="eyebrow"><span>Où en est-on&#160;?</span></p>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4vw, 54px); line-height: 1.04; letter-spacing: -.02em">La maison se construit déjà, brique par brique.</h2>
-        <div style="display: flex; gap: 40px; flex-wrap: wrap; margin-top: 10px">
-          <div>
-            <span style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; color: #15704F"><span class="mdl-cnt" aria-hidden="true" style="--n: 10"></span><span class="sr">10</span></span>
-            <span style="font-size: 15px; color: #3E4A44">bénévoles actif·ves</span>
-          </div>
-          <div>
-            <span style="display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 52px; line-height: 1; color: #15704F"><span class="mdl-cnt" aria-hidden="true" style="--n: 3"></span><span class="sr">3</span></span>
-            <span style="font-size: 15px; color: #3E4A44">Cafés des Livreurs tenus</span>
-          </div>
-        </div>
-      </div>
-      <ol class="tl" style="flex: 1 1 480px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-left: 2px solid #BFE3D2">
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 26px 30px">
-          <span aria-hidden="true" class="tl-dot" style="position: absolute; left: -9px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #15704F"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Juin 2026</p>
-          <p style="margin: 2px 0 0; font-size: 19px; font-weight: 700">Assemblée constitutive de l'association</p>
-        </li>
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 26px 30px">
-          <span aria-hidden="true" class="tl-dot" style="position: absolute; left: -9px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #15704F"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Septembre 2026</p>
-          <p style="margin: 2px 0 0; font-size: 19px; font-weight: 700">Inscription au registre des associations de Strasbourg</p>
-        </li>
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 26px 30px">
-          <span aria-hidden="true" class="tl-dot" style="position: absolute; left: -9px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #15704F"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Septembre – octobre 2026</p>
-          <p style="margin: 2px 0 0; font-size: 19px; font-weight: 700">Premiers Cafés des Livreurs</p>
-        </li>
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 26px 30px">
-          <span aria-hidden="true" class="tl-dot" style="position: absolute; left: -9px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF; border: 2px solid #15704F"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Hiver 2026</p>
-          <p style="margin: 2px 0 0; font-size: 19px; font-weight: 700">Ciné-débat de lancement, ouvert à tou·tes</p>
-        </li>
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 26px 30px">
-          <span aria-hidden="true" class="tl-dot" style="position: absolute; left: -9px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #FFFFFF; border: 2px solid #15704F"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Janvier 2027</p>
-          <p style="margin: 2px 0 0; font-size: 19px; font-weight: 700">Arrivée d'un·e coordinateur·rice salarié·e</p>
-        </li>
-        <li class="mdl-reveal" style="position: relative; padding: 0 0 0 30px">
-          <span aria-hidden="true" class="tl-dot big" style="position: absolute; left: -12px; top: 3px; width: 22px; height: 22px; border-radius: 50%; background: #F8B014; box-shadow: 0 0 0 5px rgba(248,176,20,.25)"></span>
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #3E4A44">Printemps 2027</p>
-          <p style="margin: 2px 0 0; font-size: 24px; font-weight: 700">Ouverture du lieu</p>
-        </li>
-      </ol>
-    </div>
-  </section>
-  </div>
-
-  <!-- ===== 02 ENGAGEMENT : engagements · chartes · agir ===== -->
-  <div id="engagement" class="grp grp-green">
-  <div class="grp-head">
-    <div class="wrap grp-head-in mdl-reveal">
-      <p class="grp-title"><span class="eb-num">02</span><span style="font-family: 'Bricolage Grotesque', sans-serif">Engagement</span></p>
-      <div class="grp-links"><a href="#promesses">Nos engagements</a><a href="#chartes">Les chartes</a><a href="#agir">Agir avec nous</a></div>
-    </div>
-  </div>
-  <section id="promesses" class="sec">
+  <!-- ===== NOS ENGAGEMENTS ===== -->
+  <section id="promesses" class="sec sec-green">
     <div class="wrap" style="display: flex; flex-direction: column; gap: 52px">
       <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 16px; max-width: 780px">
         <p class="eyebrow"><span>Notre engagement envers les livreur·ses</span></p>
@@ -626,254 +556,37 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
     </div>
   </section>
 
-  <section id="chartes" class="sec">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 36px">
-      <div class="head mdl-reveal">
-        <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 16px">
-          <p class="eyebrow"><span>Nos chartes, en bref</span></p>
-          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 58px); line-height: 1.04; letter-spacing: -.02em">Un cadre clair pour celles et ceux qui croisent la route des livreurs.</h2>
-        </div>
-        <p style="flex: 1 1 320px; margin: 0; max-width: 420px; color: #4A4A5E">Trois valeurs les guident&#160;: respect des droits humains, droits du travail, solidarité.</p>
-      </div>
-
-      <div role="tablist" aria-label="Choisir une charte" style="display: inline-flex; flex-wrap: wrap; align-self: flex-start; gap: 4px; padding: 5px; border-radius: 999px; background: #DCEFE5">
-        <button type="button" role="tab" class="tab" id="tab-resto" data-tab="resto" aria-selected="true" aria-controls="panel-resto">Restaurateurs</button>
-        <button type="button" role="tab" class="tab" id="tab-bene" data-tab="bene" aria-selected="false" aria-controls="panel-bene" tabindex="-1">Bénévoles</button>
-      </div>
-
-      
-        <div class="split" data-panel="resto" id="panel-resto" role="tabpanel" aria-labelledby="tab-resto">
-          <div class="card-pad" style="padding: 34px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; display: flex; flex-direction: column; gap: 20px">
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px">
-              <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px">Charte des restaurateurs</h3>
-              <span style="font-family: 'Patrick Hand', cursive; font-size: 22px; color: #1211CA">livraison respectueuse</span>
-            </div>
-            <p style="margin: 0; color: #4A4A5E">Pas un jugement&#160;: une invitation à agir, à votre échelle. En la signant, je m'engage à&#160;:</p>
-            <ol class="g2" style="margin: 0; padding: 0; list-style: none; gap: 14px 28px">
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">1</span><span><strong>Accueillir avec respect</strong><span>, sans propos discriminant, en parlant simplement si besoin.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">2</span><span><strong>Offrir une attente digne</strong><span>&#160;: un abri, de l'eau, les toilettes si possible.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">3</span><span><strong>Être à l'heure</strong><span> et prévenir en cas de retard.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">4</span><span><strong>Ne pas presser</strong><span>&#160;: la sécurité passe avant le délai.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">5</span><span><strong>Respecter la vie privée</strong><span>&#160;: aucune question sur les papiers.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">6</span><span><strong>Régler les désaccords</strong><span> par le dialogue, sans faire porter la faute au livreur.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">7</span><span><strong>Reverser tout pourboire</strong><span> intégralement au livreur.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #1211CA; color: #1211CA; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">8</span><span><strong>Informer mon équipe</strong><span> et découvrir des livraisons plus équitables, comme</span> <a href="https://coopcycle.org/" target="_blank" rel="noopener" style="font-weight: 700">CoopCycle</a><span>.</span></span></li>
-            </ol>
-          </div>
-          <div class="card-pad" style="padding: 34px; border-radius: 22px; border: 1px solid #CFE8DC; border-top: 4px solid #1211CA; background: #FFFFFF; display: flex; flex-direction: column; gap: 16px">
-            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.15">En retour, la Maison s'engage à&#160;:</h3>
-            <ul style="margin: 0; padding-inline-start: 20px; display: flex; flex-direction: column; gap: 8px; color: #4A4A5E">
-              <li>fournir l'affichette « Restaurant partenaire » et un kit d'information&#160;;</li>
-              <li>valoriser votre engagement sur nos réseaux, avec votre accord&#160;;</li>
-              <li>être votre point de contact en cas de question&#160;;</li>
-              <li>écouter vos contraintes et les porter dans notre plaidoyer&#160;;</li>
-              <li>garder la confidentialité de nos échanges.</li>
-            </ul>
-            <a href="mailto:lamaisondeslivreurs.strasbourg@gmail.com?subject=Charte%20restaurateurs" class="mdl-btn" style="margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">Signer la charte</a>
-          </div>
-        </div>
-      
-
-      
-        <div class="split" data-panel="bene" id="panel-bene" role="tabpanel" aria-labelledby="tab-bene" hidden>
-          <div class="card-pad" style="padding: 34px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; display: flex; flex-direction: column; gap: 20px">
-            <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px">
-              <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 28px">Charte du bénévole</h3>
-              <span style="font-family: 'Patrick Hand', cursive; font-size: 22px; color: #15704F">avec eux, pas à leur place</span>
-            </div>
-            <p style="margin: 0; color: #4A4A5E">Accueil, aller-vers dans la rue, Cafés des Livreurs&#160;: en rejoignant l'équipe, je m'engage à&#160;:</p>
-            <ol class="g2" style="margin: 0; padding: 0; list-style: none; gap: 14px 28px">
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">1</span><span><strong>Me présenter</strong><span> comme bénévole d'une association indépendante.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">2</span><span><strong>Écouter avant de parler</strong><span> et accompagner sans « sauver ».</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">3</span><span><strong>Respecter le rythme et le choix</strong><span> de chacun, sans insister.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">4</span><span><strong>Ne pas juger</strong><span> et ne poser aucune question sur les papiers ou le compte.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">5</span><span><strong>Parler avec respect</strong><span>&#160;: « livreur », « personne », jamais « clandestin ».</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">6</span><span><strong>Garder la confidentialité</strong><span>&#160;: rien de partagé sans accord clair.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">7</span><span><strong>Ne rien promettre</strong><span> et orienter vers l'équipe et les partenaires.</span></span></li>
-              <li style="display: flex; gap: 12px"><span aria-hidden="true" style="flex: 0 0 28px; height: 28px; border-radius: 50%; border: 1.5px solid #15704F; color: #15704F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px">8</span><span><strong>Venir en binôme</strong><span>, à l'heure, et prévenir si je ne peux pas.</span></span></li>
-            </ol>
-          </div>
-          <div class="card-pad" style="padding: 34px; border-radius: 22px; border: 1px solid #CFE8DC; border-top: 4px solid #15704F; background: #FFFFFF; display: flex; flex-direction: column; gap: 16px">
-            <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 23px; line-height: 1.15">Et tu n'es jamais seul·e&#160;:</h3>
-            <ul style="margin: 0; padding-inline-start: 20px; display: flex; flex-direction: column; gap: 8px; color: #3E4A44">
-              <li>un temps d'accueil et des repères pratiques avant ta première sortie&#160;;</li>
-              <li>un·e référent·e à qui parler d'une situation difficile&#160;;</li>
-              <li>des points réguliers en équipe&#160;;</li>
-              <li>le droit de dire non, de t'arrêter et de demander de l'aide.</li>
-            </ul>
-            <a href="mailto:lamaisondeslivreurs.strasbourg@gmail.com?subject=Devenir%20b%C3%A9n%C3%A9vole" class="mdl-btn" style="margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 999px; background: #15704F; color: #FFFFFF; font-weight: 700; text-decoration: none">Devenir bénévole</a>
-          </div>
-        </div>
-      
-    </div>
-  </section>
-
-  <section id="agir" class="sec grp-last">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 44px">
-      <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 16px; max-width: 760px">
-        <p class="eyebrow"><span>Agir avec nous</span></p>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 58px); line-height: 1.04; letter-spacing: -.02em">Chacun·e a une place dans la maison.</h2>
-      </div>
-      <div class="g4">
-        <article class="mdl-reveal mdl-card" style="padding: 28px; border-radius: 22px; border: 1px solid #1211CA; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #1211CA">Tu es livreur·se</p>
-          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.1">Viens prendre un café.</h3>
-          <p style="margin: 0; flex-grow: 1; color: #4A4A5E">Écris-nous sur WhatsApp pour connaître la prochaine date, ou pour signaler une déconnexion abusive en toute discrétion.</p>
-          <a href="https://wa.me/33601151469" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-self: flex-start; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">Écrire sur WhatsApp</a>
-          <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" style="font-size: 15px; font-weight: 700">ou suivre sur Instagram ↗</a>
-        </article>
-        <article class="mdl-reveal mdl-card" style="padding: 28px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #15704F">Tu as du temps</p>
-          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.1">Deviens bénévole.</h3>
-          <p style="margin: 0; flex-grow: 1; color: #4A4A5E">Accueil, aller-vers, atelier vélo, traduction, communication&#160;: chaque compétence compte.</p>
-          <a href="#chartes" style="font-weight: 700"><span>Lire la charte</span> <span aria-hidden="true" class="flip" style="display: inline-block">→</span></a>
-        </article>
-        <article class="mdl-reveal mdl-card" style="padding: 28px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #5E5E72">Tu es restaurateur·rice</p>
-          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.1">Deviens restaurant partenaire.</h3>
-          <p style="margin: 0; flex-grow: 1; color: #4A4A5E">Signe la charte de la livraison respectueuse et affiche-la en vitrine.</p>
-          <a href="#chartes" style="font-weight: 700"><span>Voir la charte</span> <span aria-hidden="true" class="flip" style="display: inline-block">→</span></a>
-        </article>
-        <article class="mdl-reveal mdl-card" style="padding: 28px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; display: flex; flex-direction: column; gap: 12px">
-          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #5E5E72">Structure, élu·e, financeur</p>
-          <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 26px; line-height: 1.1">Construisons-la ensemble.</h3>
-          <p style="margin: 0; flex-grow: 1; color: #4A4A5E">Locaux, permanences partagées, soutien financier&#160;: demandez notre dossier de présentation.</p>
-          <a href="mailto:lamaisondeslivreurs.strasbourg@gmail.com?subject=Partenariat" style="font-weight: 700"><span>Nous écrire</span> <span aria-hidden="true" class="flip" style="display: inline-block">→</span></a>
-        </article>
-      </div>
-      <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 14px; padding-top: 16px">
-        <p style="margin: 0; font-size: 15px; font-weight: 700; color: #5E5E72">Ils construisent la maison avec nous</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 10px">
-          <a href="https://coopcycle.org/" target="_blank" rel="noopener" class="mdl-pill" style="padding: 11px 18px; border-radius: 999px; border: 1px solid #BFE3D2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">CoopCycle-Association ↗</a>
-          <a href="https://www.migrationssante.org/" target="_blank" rel="noopener" class="mdl-pill" style="padding: 11px 18px; border-radius: 999px; border: 1px solid #BFE3D2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">Migrations Santé Alsace ↗</a>
-          <a href="https://www.reconnect.fr/" target="_blank" rel="noopener" class="mdl-pill" style="padding: 11px 18px; border-radius: 999px; border: 1px solid #BFE3D2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">Reconnect ↗</a>
-          <a href="https://www.facebook.com/Tunaweza.strasbourg" target="_blank" rel="noopener" class="mdl-pill" style="padding: 11px 18px; border-radius: 999px; border: 1px solid #BFE3D2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">Tunaweza ↗</a>
-          <a href="https://www.lelabo-partenariats.org/" target="_blank" rel="noopener" class="mdl-pill" style="padding: 11px 18px; border-radius: 999px; border: 1px solid #BFE3D2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">Le Labo des Partenariats ↗</a>
+  <!-- ===== NOUS RENCONTRER ===== -->
+  <section id="rencontrer" class="sec">
+    <div class="wrap rdv">
+      <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 18px">
+        <p class="eyebrow"><span>Nous rencontrer</span></p>
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 58px); line-height: 1.04; letter-spacing: -.02em">Viens prendre un café.</h2>
+        <p style="margin: 0; max-width: 560px; color: #4A4A5E">En attendant l'ouverture du lieu, on se retrouve aux Cafés des Livreurs, le week-end de 15h à 18h. La date et le lieu sont annoncés sur le groupe WhatsApp et sur Instagram.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px">
+          <a href="https://chat.whatsapp.com/JG7V2qbo7UQ6ZfQI7i8W1e?mode=gi_t" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">
+            <span>Rejoindre le groupe WhatsApp</span>
+            <svg aria-hidden="true" class="flip" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 9h12M10 4l5 5-5 5"></path></svg>
+          </a>
+          <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 24px; border-radius: 999px; border: 1px solid #D5D6E2; background: #FFFFFF; color: #14142B; font-weight: 700; text-decoration: none">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"></circle></svg>
+            <span>Suivre sur Instagram</span>
+          </a>
         </div>
       </div>
-      <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" class="mdl-card mdl-reveal" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 32px; border-radius: 22px; border: 1px solid #CFE8DC; background: #FFFFFF; color: #14142B; text-decoration: none">
-        <span style="display: flex; align-items: center; gap: 18px">
-          <span aria-hidden="true" style="flex: 0 0 56px; width: 56px; height: 56px; border-radius: 16px; background: #EEEFFF; display: flex; align-items: center; justify-content: center; color: #1211CA"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"></circle></svg></span>
-          <span style="display: flex; flex-direction: column">
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; line-height: 1.15">Les dates des Cafés, les coulisses, les nouvelles</span>
-            <span style="color: #4A4A5E" dir="ltr">@lamaisondeslivreurs.strasbourg</span>
-          </span>
-        </span>
-        <span style="display: inline-flex; align-items: center; min-height: 46px; padding: 0 20px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700">Suivre sur Instagram ↗</span>
-      </a>
-    </div>
-  </section>
-  </div>
-
-  <!-- ===== 03 RÉSEAU : maisons · presse ===== -->
-  <div id="reseau" class="grp">
-  <div class="grp-head">
-    <div class="wrap grp-head-in mdl-reveal">
-      <p class="grp-title"><span class="eb-num">03</span><span style="font-family: 'Bricolage Grotesque', sans-serif">Réseau</span></p>
-      <div class="grp-links"><a href="#maisons">Les Maisons en France</a><a href="#presse">Dans la presse</a></div>
-    </div>
-  </div>
-  <section id="maisons" class="sec">
-    <div class="wrap" style="display: flex; flex-direction: column; gap: 52px">
-      <div class="head mdl-reveal">
-        <div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 16px">
-          <p class="eyebrow"><span>Un modèle qui a fait ses preuves</span></p>
-          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(32px, 4.2vw, 58px); line-height: 1.04; letter-spacing: -.02em">Paris, Bordeaux, Nantes… et maintenant Strasbourg.</h2>
-        </div>
-        <p style="flex: 1 1 320px; margin: 0; max-width: 440px; color: #4A4A5E"><span>Strasbourg rejoint le réseau national des Maisons des Livreurs, aux côtés de</span> <a href="https://coopcycle.org/" target="_blank" rel="noopener" style="font-weight: 700">CoopCycle-Association</a><span>.</span></p>
-      </div>
-      <div class="g4">
-        <a href="https://coopcycle.org/la-maison-des-coursiers/" target="_blank" rel="noopener" class="mdl-reveal mdl-card" style="border-radius: 22px; overflow: hidden; border: 1px solid #E2E4F2; background: #FFFFFF; color: #14142B; text-decoration: none; display: flex; flex-direction: column">
-          <div style="height: 150px; background: #EEEFFF; display: flex; flex-direction: column; justify-content: space-between; padding: 16px">
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 42px; line-height: 1">Paris</span>
-            <svg aria-hidden="true" width="44" height="36" viewBox="0 0 200 160" fill="none" stroke="#1211CA" stroke-width="9" stroke-linejoin="round" style="align-self: flex-end; opacity: .45"><path d="M30 70 10 70 100 10 132 34 132 18 152 18 152 48 190 70 170 70 170 150 30 150Z"></path></svg>
-          </div>
-          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
-            <p style="margin: 0; font-size: 14px; font-weight: 700; color: #5E5E72">Maison des coursiers · 2021</p>
-            <p style="margin: 0; font-size: 16.5px; flex-grow: 1">Le premier lieu du genre. Un an après l'ouverture, 22 personnes accompagnées avaient trouvé un emploi, dont 10 en CDI.</p>
-            <span style="font-weight: 700; color: #1211CA">Voir la maison ↗</span>
-          </div>
-        </a>
-        <a href="https://www.fondationdefrance.org/fr/cat-fondation-de-france-sud-ouest/la-maison-des-livreurs-un-lieu-ressource-pour-les-coursiers-a-velo" target="_blank" rel="noopener" class="mdl-reveal mdl-card" style="border-radius: 22px; overflow: hidden; border: 1px solid #E2E4F2; background: #FFFFFF; color: #14142B; text-decoration: none; display: flex; flex-direction: column">
-          <div style="height: 150px; background: #EEEFFF; display: flex; flex-direction: column; justify-content: space-between; padding: 16px">
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 42px; line-height: 1">Bordeaux</span>
-            <svg aria-hidden="true" width="44" height="36" viewBox="0 0 200 160" fill="none" stroke="#1211CA" stroke-width="9" stroke-linejoin="round" style="align-self: flex-end; opacity: .45"><path d="M30 70 10 70 100 10 132 34 132 18 152 18 152 48 190 70 170 70 170 150 30 150Z"></path></svg>
-          </div>
-          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
-            <p style="margin: 0; font-size: 14px; font-weight: 700; color: #5E5E72">Maison des livreurs · 2023</p>
-            <p style="margin: 0; font-size: 16.5px; flex-grow: 1">Près de 350 bénéficiaires et plus de 1&#160;000 accompagnements en deux ans, environ 80 livreurs de passage par jour.</p>
-            <span style="font-weight: 700; color: #1211CA">Lire le reportage ↗</span>
-          </div>
-        </a>
-        <a href="https://www.marcelle.media/une-maison-pour-prendre-soin-des-livreurs/" target="_blank" rel="noopener" class="mdl-reveal mdl-card" style="border-radius: 22px; overflow: hidden; border: 1px solid #E2E4F2; background: #FFFFFF; color: #14142B; text-decoration: none; display: flex; flex-direction: column">
-          <div style="height: 150px; background: #EEEFFF; display: flex; flex-direction: column; justify-content: space-between; padding: 16px">
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 42px; line-height: 1">Nantes</span>
-            <svg aria-hidden="true" width="44" height="36" viewBox="0 0 200 160" fill="none" stroke="#1211CA" stroke-width="9" stroke-linejoin="round" style="align-self: flex-end; opacity: .45"><path d="M30 70 10 70 100 10 132 34 132 18 152 18 152 48 190 70 170 70 170 150 30 150Z"></path></svg>
-          </div>
-          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
-            <p style="margin: 0; font-size: 14px; font-weight: 700; color: #5E5E72">Maison des livreurs · 2025</p>
-            <p style="margin: 0; font-size: 16.5px; flex-grow: 1">Une permanence chaque vendredi&#160;: 80 livreurs aidés depuis début 2026, en attendant un local ouvert tous les jours.</p>
-            <span style="font-weight: 700; color: #1211CA">Lire le reportage ↗</span>
-          </div>
-        </a>
-        <div class="mdl-reveal mdl-card" style="border-radius: 22px; overflow: hidden; border: 1px solid #1211CA; background: #FFFFFF; color: #14142B; display: flex; flex-direction: column">
-          <div style="height: 150px; display: flex; align-items: center; justify-content: center; background: #1211CA">
-            <img class="mdl-bob" src="logo-mdl.png" alt="" style="width: 112px; height: 112px">
-          </div>
-          <div style="padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex-grow: 1">
-            <p style="margin: 0; font-size: 14px; font-weight: 700; color: #1211CA">Strasbourg · 2027</p>
-            <p style="margin: 0; font-size: 16.5px; flex-grow: 1">Une association créée en 2026, une équipe bénévole déjà sur le terrain et un lieu qui ouvre au printemps 2027.</p>
-            <a href="https://www.instagram.com/lamaisondeslivreurs.strasbourg/" target="_blank" rel="noopener" style="font-weight: 700">Suivre l'aventure sur Instagram ↗</a>
-          </div>
-        </div>
+      <div class="qr-card mdl-reveal">
+        <div class="qr-box"><svg aria-hidden="true" shape-rendering="crispEdges" style="display: block; width: 100%; height: 100%" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"></path><path class="qrline" stroke="#14142b" d="M2 2.5h7m1 0h4m2 0h3m1 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h5m2 0h2m2 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h2m2 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m3 0h1m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m1 0h2m1 0h6m1 0h1m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h1m2 0h4m4 0h2m-24 1h1m1 0h2m1 0h3m3 0h1m3 0h1m1 0h5m1 0h1m2 0h1m2 0h1m1 0h2m-33 1h2m1 0h2m2 0h2m1 0h1m2 0h2m2 0h5m1 0h2m1 0h2m1 0h2m1 0h1m-32 1h10m1 0h2m2 0h3m1 0h4m3 0h3m1 0h2m-32 1h5m5 0h2m2 0h1m2 0h2m4 0h4m1 0h1m1 0h2m-33 1h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m6 0h2m3 0h1m-30 1h1m1 0h1m4 0h2m1 0h2m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-30 1h1m3 0h1m3 0h2m1 0h2m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m-31 1h1m3 0h2m3 0h2m1 0h1m2 0h1m3 0h3m1 0h1m1 0h2m3 0h1m-30 1h1m1 0h1m2 0h1m1 0h1m3 0h2m4 0h2m1 0h6m1 0h1m1 0h1m-31 1h3m1 0h1m5 0h1m2 0h2m5 0h1m1 0h5m1 0h2m1 0h2m-32 1h1m4 0h2m1 0h1m1 0h3m1 0h1m1 0h1m2 0h2m3 0h1m1 0h2m1 0h2m-32 1h1m2 0h1m3 0h1m2 0h1m3 0h2m1 0h2m1 0h1m1 0h2m4 0h1m2 0h2m-32 1h1m2 0h1m1 0h3m1 0h1m2 0h7m1 0h1m2 0h1m2 0h1m1 0h3m-32 1h1m2 0h2m2 0h1m3 0h3m1 0h1m1 0h5m1 0h3m1 0h1m1 0h2m1 0h1m-28 1h4m1 0h1m3 0h1m3 0h1m4 0h2m1 0h2m2 0h3m-32 1h1m1 0h2m2 0h2m2 0h1m1 0h2m3 0h3m5 0h1m1 0h2m1 0h2m-33 1h1m2 0h1m2 0h2m2 0h1m1 0h4m1 0h1m1 0h1m2 0h9m1 0h1m-25 1h4m1 0h2m1 0h1m2 0h1m2 0h3m3 0h2m1 0h1m-32 1h7m1 0h1m2 0h2m6 0h2m2 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m2 0h1m3 0h1m2 0h1m1 0h4m3 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h8m1 0h2m1 0h6m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m6 0h1m1 0h1m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h3m3 0h3m3 0h2m1 0h2m-31 1h1m5 0h1m2 0h4m2 0h5m3 0h1m2 0h3m3 0h1m-33 1h7m1 0h2m4 0h4m2 0h2m1 0h1m4 0h2"></path></svg></div>
+        <p style="margin: 0; font-weight: 700">Scanne pour rejoindre le groupe WhatsApp</p>
+        <p style="margin: 0; font-size: 15px; color: #5E5E72">Dates des Cafés, infos utiles, entraide entre livreur·ses.</p>
       </div>
     </div>
   </section>
 
-  <section id="presse" class="sec grp-last">
-    <div class="wrap" style="max-width: 1000px; display: flex; flex-direction: column; gap: 32px">
-      <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 16px">
-        <p class="eyebrow"><span>Dans la presse</span></p>
-        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.8vw, 50px); line-height: 1.06; letter-spacing: -.02em">On parle de nous.</h2>
-        <p style="margin: 0; max-width: 640px; color: #4A4A5E">Depuis avril 2026, les médias de Strasbourg et d'Alsace suivent le projet.</p>
-      </div>
-      <div style="display: flex; flex-direction: column; border-top: 1px solid #14142B">
-        <a href="https://www.rue89strasbourg.com/maison-livreurs-velo-strasbourg-384991" target="_blank" rel="noopener" hreflang="fr" class="mdl-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding: 20px 8px; border-bottom: 1px solid #E6E6EE; color: #14142B; text-decoration: none">
-          <span style="flex: 0 0 210px; font-size: 15px; font-weight: 700; color: #5E5E72">Rue89 Strasbourg · 2026</span>
-          <span lang="fr" style="flex: 1 1 320px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 20px">Une maison des livreurs en projet à Strasbourg</span>
-          <span class="mdl-arrow" aria-hidden="true" style="font-size: 22px; font-weight: 700">↗</span>
-        </a>
-        <a href="https://pokaa.fr/2026/04/09/offrir-un-peu-de-repit-a-strasbourg-une-maison-des-livreurs-ouvrira-t-elle-en-2027/" target="_blank" rel="noopener" hreflang="fr" class="mdl-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding: 20px 8px; border-bottom: 1px solid #E6E6EE; color: #14142B; text-decoration: none">
-          <span style="flex: 0 0 210px; font-size: 15px; font-weight: 700; color: #5E5E72">Pokaa · 2026</span>
-          <span lang="fr" style="flex: 1 1 320px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 20px">« Offrir un peu de répit »&#160;: à Strasbourg, une Maison des livreurs ouvrira-t-elle en 2027&#160;?</span>
-          <span class="mdl-arrow" aria-hidden="true" style="font-size: 22px; font-weight: 700">↗</span>
-        </a>
-        <a href="https://www.dna.fr/societe/2026/05/25/ville-ou-campagne-le-quotidien-precaire-des-livreurs-de-plateformes" target="_blank" rel="noopener" hreflang="fr" class="mdl-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding: 20px 8px; border-bottom: 1px solid #E6E6EE; color: #14142B; text-decoration: none">
-          <span style="flex: 0 0 210px; font-size: 15px; font-weight: 700; color: #5E5E72">DNA · 2026</span>
-          <span lang="fr" style="flex: 1 1 320px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 20px">Ville ou campagne, le quotidien précaire des livreurs de plateformes</span>
-          <span class="mdl-arrow" aria-hidden="true" style="font-size: 22px; font-weight: 700">↗</span>
-        </a>
-        <a href="https://hal.science/SANTE-COURSE/ird-05573116v1" target="_blank" rel="noopener" hreflang="fr" class="mdl-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding: 20px 8px; border-bottom: 1px solid #E6E6EE; color: #14142B; text-decoration: none">
-          <span style="flex: 0 0 210px; font-size: 15px; font-weight: 700; color: #5E5E72">IRD · INED · Médecins du Monde</span>
-          <span style="flex: 1 1 320px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 20px">Étude SANTÉ-COURSE&#160;: la santé et les conditions de vie des livreurs de plateformes</span>
-          <span class="mdl-arrow" aria-hidden="true" style="font-size: 22px; font-weight: 700">↗</span>
-        </a>
-      </div>
-      <p style="margin: 0; font-size: 15px; color: #5E5E72">Articles en français.</p>
-    </div>
-  </section>
-  </div>
-
-  <!-- ===== 04 QUESTIONS ===== -->
-  <div id="faq" class="grp grp-blue">
-  <div class="grp-head">
-    <div class="wrap grp-head-in mdl-reveal">
-      <p class="grp-title"><span class="eb-num">04</span><span style="font-family: 'Bricolage Grotesque', sans-serif">Questions</span></p>
-    </div>
-  </div>
-  <section class="sec grp-last">
+  <!-- ===== QUESTIONS ===== -->
+  <section id="faq" class="sec sec-blue">
     <div class="wrap" style="max-width: 860px; display: flex; flex-direction: column; gap: 28px">
       <div class="mdl-reveal" style="display: flex; flex-direction: column; gap: 16px">
+        <p class="eyebrow"><span>Questions fréquentes</span></p>
         <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(30px, 3.8vw, 48px); line-height: 1.06">Les questions qu'on nous pose</h2>
       </div>
       <div style="display: flex; flex-direction: column; gap: 10px">
@@ -896,7 +609,24 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
       </div>
     </div>
   </section>
-  </div>
+
+  <!-- ===== ALLER PLUS LOIN ===== -->
+  <section id="plus" class="sec">
+    <div class="wrap g2">
+      <a href="s-engager.html" class="teaser mdl-card mdl-reveal" style="border: 1px solid #CFE8DC; background: #EDF7F2">
+        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #15704F">Bénévoles, restaurateurs, partenaires</p>
+        <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; line-height: 1.1">S'engager avec nous</h3>
+        <p style="margin: 0; flex-grow: 1; color: #3E4A44">Nos deux chartes, et toutes les façons de donner un coup de main.</p>
+        <span style="font-weight: 700; color: #15704F"><span>Découvrir</span> <span aria-hidden="true" class="flip" style="display: inline-block">→</span></span>
+      </a>
+      <a href="le-projet.html" class="teaser mdl-card mdl-reveal" style="border: 1px solid #E2E4F2; background: #F5F6FC">
+        <p style="margin: 0; font-size: 14px; font-weight: 700; color: #1211CA">Financeurs, élu·es, journalistes</p>
+        <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 30px; line-height: 1.1">Découvrir le projet</h3>
+        <p style="margin: 0; flex-grow: 1; color: #4A4A5E">Les chiffres, les étapes, le réseau des Maisons et ce qu'en dit la presse.</p>
+        <span style="font-weight: 700; color: #1211CA"><span>Découvrir</span> <span aria-hidden="true" class="flip" style="display: inline-block">→</span></span>
+      </a>
+    </div>
+  </section>
   </main>
 
   <!-- ===== PIED DE PAGE ===== -->
@@ -905,10 +635,10 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
       <div class="foot">
         <div style="display: flex; flex-direction: column; gap: 18px">
           <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.02; letter-spacing: -.02em"><span>La porte est</span> <span style="color: #1211CA">ouverte.</span></h2>
-          <p style="margin: 0; color: #4A4A5E; max-width: 440px">Pour recevoir les dates des prochains Cafés des Livreurs et les nouvelles de l'ouverture, écris-nous ou suis-nous sur Instagram.</p>
+          <p style="margin: 0; color: #4A4A5E; max-width: 440px">Pour connaître les dates des prochains Cafés des Livreurs et les nouvelles de l'ouverture, rejoins le groupe WhatsApp ou suis-nous sur Instagram.</p>
           <div style="display: flex; flex-wrap: wrap; gap: 10px">
             <a href="mailto:lamaisondeslivreurs.strasbourg@gmail.com?subject=Je%20veux%20recevoir%20les%20nouvelles%20de%20la%20Maison%20des%20Livreurs" class="mdl-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #1211CA; color: #FFFFFF; font-weight: 700; text-decoration: none">Recevoir les nouvelles par mail</a>
-            <a href="https://wa.me/33601151469" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #D5D6E2; color: #14142B; font-weight: 700; text-decoration: none">Écrire sur WhatsApp</a>
+            <a href="https://chat.whatsapp.com/JG7V2qbo7UQ6ZfQI7i8W1e?mode=gi_t" target="_blank" rel="noopener" class="mdl-btn" style="display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 999px; border: 1px solid #D5D6E2; color: #14142B; font-weight: 700; text-decoration: none">Rejoindre le groupe WhatsApp</a>
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 18px; font-size: 16.5px">
@@ -919,7 +649,7 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
           <div>
             <p style="margin: 0 0 4px; font-size: 14px; font-weight: 700; color: #5E5E72">Le lieu</p>
             <span style="display: block">Ouverture au printemps 2027.</span>
-            <span style="display: block; color: #4A4A5E">En attendant&#160;: Cafés des Livreurs le week-end, de 15h à 18h. Date et lieu annoncés sur Instagram et WhatsApp.</span>
+            <span style="display: block; color: #4A4A5E">En attendant&#160;: Cafés des Livreurs le week-end, de 15h à 18h. Date et lieu annoncés sur le groupe WhatsApp et sur Instagram.</span>
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 18px; font-size: 16.5px">
@@ -931,9 +661,11 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
             </a>
           </div>
           <div>
-            <p style="margin: 0 0 4px; font-size: 14px; font-weight: 700; color: #5E5E72">Téléphone et WhatsApp</p>
-            <a href="tel:+33601151469" style="display: block" dir="ltr">06&nbsp;01&nbsp;15&nbsp;14&nbsp;69</a>
-            <a href="https://wa.me/33601151469" target="_blank" rel="noopener" style="display: block">Écrire sur WhatsApp ↗</a>
+            <p style="margin: 0 0 8px; font-size: 14px; font-weight: 700; color: #5E5E72">Groupe WhatsApp</p>
+            <div style="display: flex; align-items: center; gap: 14px">
+              <span style="flex: 0 0 92px; width: 92px; height: 92px; padding: 5px; border: 1px solid #E6E6EE; border-radius: 12px; background: #FFFFFF"><svg aria-hidden="true" shape-rendering="crispEdges" style="display: block; width: 100%; height: 100%" viewBox="0 0 37 37" class="segno"><path fill="#fff" d="M0 0h37v37h-37z"></path><path class="qrline" stroke="#14142b" d="M2 2.5h7m1 0h4m2 0h3m1 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h1m2 0h1m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h5m2 0h2m2 0h3m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m4 0h1m1 0h2m2 0h3m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m3 0h1m1 0h2m2 0h1m3 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m2 0h1m1 0h2m1 0h6m1 0h1m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h1m2 0h4m4 0h2m-24 1h1m1 0h2m1 0h3m3 0h1m3 0h1m1 0h5m1 0h1m2 0h1m2 0h1m1 0h2m-33 1h2m1 0h2m2 0h2m1 0h1m2 0h2m2 0h5m1 0h2m1 0h2m1 0h2m1 0h1m-32 1h10m1 0h2m2 0h3m1 0h4m3 0h3m1 0h2m-32 1h5m5 0h2m2 0h1m2 0h2m4 0h4m1 0h1m1 0h2m-33 1h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m6 0h2m3 0h1m-30 1h1m1 0h1m4 0h2m1 0h2m1 0h2m2 0h1m1 0h1m1 0h2m1 0h1m2 0h1m2 0h2m-30 1h1m3 0h1m3 0h2m1 0h2m1 0h2m1 0h2m1 0h1m1 0h1m1 0h1m2 0h2m-31 1h1m3 0h2m3 0h2m1 0h1m2 0h1m3 0h3m1 0h1m1 0h2m3 0h1m-30 1h1m1 0h1m2 0h1m1 0h1m3 0h2m4 0h2m1 0h6m1 0h1m1 0h1m-31 1h3m1 0h1m5 0h1m2 0h2m5 0h1m1 0h5m1 0h2m1 0h2m-32 1h1m4 0h2m1 0h1m1 0h3m1 0h1m1 0h1m2 0h2m3 0h1m1 0h2m1 0h2m-32 1h1m2 0h1m3 0h1m2 0h1m3 0h2m1 0h2m1 0h1m1 0h2m4 0h1m2 0h2m-32 1h1m2 0h1m1 0h3m1 0h1m2 0h7m1 0h1m2 0h1m2 0h1m1 0h3m-32 1h1m2 0h2m2 0h1m3 0h3m1 0h1m1 0h5m1 0h3m1 0h1m1 0h2m1 0h1m-28 1h4m1 0h1m3 0h1m3 0h1m4 0h2m1 0h2m2 0h3m-32 1h1m1 0h2m2 0h2m2 0h1m1 0h2m3 0h3m5 0h1m1 0h2m1 0h2m-33 1h1m2 0h1m2 0h2m2 0h1m1 0h4m1 0h1m1 0h1m2 0h9m1 0h1m-25 1h4m1 0h2m1 0h1m2 0h1m2 0h3m3 0h2m1 0h1m-32 1h7m1 0h1m2 0h2m6 0h2m2 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m2 0h1m3 0h1m2 0h1m1 0h4m3 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h8m1 0h2m1 0h6m1 0h1m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m6 0h1m1 0h1m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h3m3 0h3m3 0h2m1 0h2m-31 1h1m5 0h1m2 0h4m2 0h5m3 0h1m2 0h3m3 0h1m-33 1h7m1 0h2m4 0h4m2 0h2m1 0h1m4 0h2"></path></svg></span>
+              <a href="https://chat.whatsapp.com/JG7V2qbo7UQ6ZfQI7i8W1e?mode=gi_t" target="_blank" rel="noopener" style="font-weight: 700">Rejoindre le groupe ↗</a>
+            </div>
           </div>
         </div>
       </div>
@@ -971,24 +703,23 @@ section[id],footer[id],.grp[id]{scroll-margin-top:84px}
     d.addEventListener('click',function(e){if(!l.contains(e.target))l.removeAttribute('open');});
     l.addEventListener('keydown',function(e){if(e.key==='Escape'){l.removeAttribute('open');l.querySelector('summary').focus();}});
   });
-  var links=d.querySelectorAll('[data-spy]'), sublinks=d.querySelectorAll('[data-sub]'), track=d.getElementById('subnav-track'), subnav=d.getElementById('subnav'), top=d.getElementById('totop');
-  var GROUPS=["projet", "engagement", "reseau", "faq", "contact"], SUBS=["pourquoi", "services", "etapes", "promesses", "chartes", "agir", "maisons", "presse"];
-  function setSub(id){sublinks.forEach(function(a){a.classList.toggle('is-active',a.getAttribute('data-sub')===id);});}
+  var links=d.querySelectorAll('[data-spy],[data-sub]'), track=d.getElementById('subnav-track'), subnav=d.getElementById('subnav'), top=d.getElementById('totop');
+  var SECTIONS=["services", "promesses", "rencontrer", "faq"];
   function setActive(id){
-    links.forEach(function(a){var on=a.getAttribute('data-spy')===id;a.classList.toggle('is-active',on);if(on){a.setAttribute('aria-current','true');}else{a.removeAttribute('aria-current');}});
+    links.forEach(function(a){var on=(a.getAttribute('data-spy')||a.getAttribute('data-sub'))===id;a.classList.toggle('is-active',on);if(a.hasAttribute('data-spy')){if(on){a.setAttribute('aria-current','true');}else{a.removeAttribute('aria-current');}}});
     var chip=track&&track.querySelector('[data-spy="'+id+'"]');
     if(chip&&track){var r=chip.offsetLeft-(track.clientWidth-chip.offsetWidth)/2;track.scrollTo({left:r,behavior:'smooth'});}
   }
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var id=e.target.id;if(GROUPS.indexOf(id)>=0){setActive(id);}else{setSub(id);}});},{rootMargin:'-45% 0px -50% 0px'});
-    GROUPS.concat(SUBS).forEach(function(id){var el=d.getElementById(id);if(el)io.observe(el);});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});},{rootMargin:'-45% 0px -50% 0px'});
+    SECTIONS.forEach(function(id){var el=d.getElementById(id);if(el)io.observe(el);});
   }
   var ticking=false;
   function onScroll(){
     var y=window.scrollY||window.pageYOffset, past=y>window.innerHeight*0.6;
     if(subnav)subnav.classList.toggle('is-hidden',!past);
     if(top){if(y>700){top.removeAttribute('hidden');}else{top.setAttribute('hidden','');}}
-    if(y<200){setActive('');setSub('');}
+    if(y<200)setActive('');
     ticking=false;
   }
   window.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll);}},{passive:true});
